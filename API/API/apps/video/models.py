@@ -26,13 +26,4 @@ class Result(models.Model):
         verbose_name = "Результат"
         verbose_name_plural = "Результаты"
 
-    @classmethod
-    @app.task(bind=True)
-    def start_processing(cls, self, video_id) -> None:
-        print("start processing")
-        sleep(1)
-        print("end processing")
-        cls.objects.create(video_id=video_id, timecodes={"test": "test"})
-
-
 

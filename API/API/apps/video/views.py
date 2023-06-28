@@ -2,6 +2,7 @@ from rest_framework import generics
 
 from API.apps.video.models import Video, Result
 from API.apps.video.serializers import VideoSerializer
+from .tasks import process_video
 
 
 class VideoAPIList(generics.ListCreateAPIView):
@@ -10,7 +11,7 @@ class VideoAPIList(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
         res = self.create(request, *args, **kwargs)
-        Result.start_processing(res.data["id"])
+        process_video.delay(res.data['id'])
         return res
 
 
