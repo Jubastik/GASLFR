@@ -4,6 +4,7 @@ from API.apps.video.models import Video, Result
 
 
 class VideoSerializer(serializers.ModelSerializer):
+    creator = serializers.HiddenField(default=serializers.CurrentUserDefault())
     error_code = serializers.IntegerField(read_only=True, source="result.error_code")
     timecodes = serializers.JSONField(read_only=True, source="result.timecodes")
 
