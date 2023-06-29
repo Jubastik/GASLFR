@@ -1,9 +1,9 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAdminUser
 
-from API.apps.video.models import Video, Result
+from API.apps.video.models import Video
 from API.apps.video.serializers import VideoSerializer
-from .permissions import IsOwner
+from API.permissions import IsOwner
 from .tasks import process_video
 
 
