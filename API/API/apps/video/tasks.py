@@ -11,7 +11,7 @@ def process_video(self, video_id):
     video_path = video.clip.path
     job = ml_client.submit(video_path)
     while job.status().success is None:
-        sleep(1)
+        sleep(3)
         video.status = job.status().code
         video.save()
     if job.status().success:
